@@ -4,6 +4,7 @@ import {
   SET_LIMIT,
   SET_OFFSET,
   SET_RESULT,
+  SET_TOTAL,
 } from './mutationTypes';
 
 export default {
@@ -21,5 +22,9 @@ export default {
 
   [SET_RESULT](state, value) {
     state.result = value;
-  }
+  },
+
+  [SET_TOTAL](state, value) {
+    state.total = value;
+  },
 };

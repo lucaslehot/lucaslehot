@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div class="d-flex flex-row justify-content-between">
       <select 
         class="form-select mb-3" 
         aria-label="Résultats par page"
@@ -11,6 +11,24 @@
         <option value="50">50</option>
         <option value="100">100</option>
       </select>
+      
+      <div class="d-flex flex-row mb-3">
+        <div 
+          role="button"
+          class="mr-2 px-2 border border-dark rounded"
+          @click="offsetDown"
+        >
+          Précédent
+        </div>
+
+        <div 
+          role="button"
+          class="px-2 border border-dark rounded"
+          @click="offsetUp"
+        >
+          Suivant
+        </div>
+      </div>
     </div>
     <table class="table">
       <thead class="thead-dark">
@@ -58,6 +76,35 @@
           </tr>
       </tbody>
     </table>
+    
+    <div class="d-flex justify-content-between">
+      <div>
+        Page {{currentPage}} / {{totalPages}}
+      </div>
+      <div>
+        Résultats {{offset}} à {{offset+limit}} sur {{total}}
+      </div>
+    </div>
+
+    <div class="d-flex flex-row justify-content-start">
+      <div class="d-flex flex-row mt-3">
+        <div 
+          role="button"
+          class="mr-2 px-2 border border-dark rounded"
+          @click="offsetDown"
+        >
+          Précédent
+        </div>
+
+        <div 
+          role="button"
+          class="px-2 border border-dark rounded"
+          @click="offsetUp"
+        >
+          Suivant
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -73,11 +120,10 @@ export default {
 
   async created(){
     await this.getFilms();
-    console.log(this.result);
   },
 
   computed: {
-    ...mapState('films', ['orderBy', 'limit', 'offset', 'result']),
+    ...mapState('films', ['orderBy', 'limit', 'offset', 'result', 'total']),
 
     titleArrow() {
       if(this.orderBy == 'query1.title asc') {
@@ -104,6 +150,14 @@ export default {
         return '▼';
       }
       return '';
+    },
+
+    currentPage() {
+      return Math.ceil(this.offset / this.limit) + 1;
+    },
+
+    totalPages() {
+      return Math.ceil(this.total / this.limit);
     },
   },
 
@@ -136,9 +190,31 @@ export default {
     },
 
     updatelimit(){
-      this[SET_LIMIT](this.limitTemp);
+      this[SET_LIMIT](parseInt(this.limitTemp));
+      this[SET_OFFSET](0);
 
       this.getFilms();
+    },
+
+    offsetUp(){
+      if(this.offset + this.limit < this.total) {
+        this[SET_OFFSET](this.offset + this.limit);
+
+        this.getFilms();
+      }
+    },
+
+    offsetDown(){
+      if (this.offset - this.limit >= 0) {
+        this[SET_OFFSET](this.offset - this.limit);
+
+        this.getFilms();
+      }
+      else {
+        this[SET_OFFSET](0);
+
+        this.getFilms();
+      }
     },
   }
 }

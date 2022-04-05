@@ -53,6 +53,12 @@ class HomeController extends Controller
         ;
 
         $films = DB::connection('mysql2')->select($query);
-        return $films;
+
+        $totalResults = DB::connection('mysql2')->select('SELECT COUNT(*) AS count FROM film');
+
+        return response()->json([
+            'films' => $films,
+            'totalResults' => $totalResults
+        ]);
     }
 }

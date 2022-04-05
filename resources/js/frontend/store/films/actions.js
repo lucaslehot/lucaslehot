@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {
   SET_RESULT,
+  SET_TOTAL,
 } from './mutationTypes';
 
 export default {
@@ -13,6 +14,7 @@ export default {
       },
     });
 
-    commit(SET_RESULT, data);
+    commit(SET_RESULT, data.films);
+    commit(SET_TOTAL, data.totalResults[0].count);
   },
 };
