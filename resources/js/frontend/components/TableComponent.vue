@@ -69,10 +69,10 @@
       <tbody>
           <tr v-for="film in result" :key="film.title">
             <th scope="row">{{film.title}}</th>
-            <td>{{film.rental_rate}}</td>
+            <td>${{film.rental_rate}}</td>
             <td>{{film.rating}}</td>
             <td>{{film.name}}</td>
-            <td>{{film.count}}</td>
+            <td>{{film.count ? film.count : 0}}</td>
           </tr>
       </tbody>
     </table>
