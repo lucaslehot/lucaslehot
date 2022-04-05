@@ -13,7 +13,7 @@ class CreatePasswordHistoriesTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql')->create('password_histories', function (Blueprint $table) {
+        Schema::connection('pgsql')->create('password_histories', function (Blueprint $table) {
             $table->id();
             $table->string('model_type');
             $table->unsignedBigInteger('model_id');
@@ -29,6 +29,6 @@ class CreatePasswordHistoriesTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql')->dropIfExists('password_histories');
+        Schema::connection('pgsql')->dropIfExists('password_histories');
     }
 }

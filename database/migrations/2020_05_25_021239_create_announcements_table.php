@@ -13,7 +13,7 @@ class CreateAnnouncementsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql')->create('announcements', function (Blueprint $table) {
+        Schema::connection('pgsql')->create('announcements', function (Blueprint $table) {
             $table->id();
             $table->enum('area', ['frontend', 'backend'])->nullable();
             $table->enum('type', ['info', 'danger', 'warning', 'success'])->default('info');
@@ -32,6 +32,6 @@ class CreateAnnouncementsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql')->dropIfExists('announcements');
+        Schema::connection('pgsql')->dropIfExists('announcements');
     }
 }

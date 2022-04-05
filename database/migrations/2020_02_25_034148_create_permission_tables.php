@@ -17,7 +17,7 @@ class CreatePermissionTables extends Migration
         $tableNames = config('permission.table_names');
         $columnNames = config('permission.column_names');
 
-        Schema::connection('mysql')->create($tableNames['permissions'], function (Blueprint $table) use ($tableNames) {
+        Schema::connection('pgsql')->create($tableNames['permissions'], function (Blueprint $table) use ($tableNames) {
             $table->bigIncrements('id');
             $table->enum('type', [User::TYPE_ADMIN, User::TYPE_USER]);
             $table->string('guard_name');
@@ -33,7 +33,7 @@ class CreatePermissionTables extends Migration
                 ->onDelete('cascade');
         });
 
-        Schema::connection('mysql')->create($tableNames['roles'], function (Blueprint $table) {
+        Schema::connection('pgsql')->create($tableNames['roles'], function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->enum('type', [User::TYPE_ADMIN, User::TYPE_USER]);
             $table->string('name');
@@ -41,7 +41,7 @@ class CreatePermissionTables extends Migration
             $table->timestamps();
         });
 
-        Schema::connection('mysql')->create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames) {
+        Schema::connection('pgsql')->create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames) {
             $table->unsignedBigInteger('permission_id');
 
             $table->string('model_type');
@@ -57,7 +57,7 @@ class CreatePermissionTables extends Migration
                     'model_has_permissions_permission_model_type_primary');
         });
 
-        Schema::connection('mysql')->create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames) {
+        Schema::connection('pgsql')->create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames) {
             $table->unsignedBigInteger('role_id');
 
             $table->string('model_type');
@@ -73,7 +73,7 @@ class CreatePermissionTables extends Migration
                     'model_has_roles_role_model_type_primary');
         });
 
-        Schema::connection('mysql')->create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames) {
+        Schema::connection('pgsql')->create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames) {
             $table->unsignedBigInteger('permission_id');
             $table->unsignedBigInteger('role_id');
 
@@ -104,10 +104,10 @@ class CreatePermissionTables extends Migration
     {
         $tableNames = config('permission.table_names');
 
-        Schema::connection('mysql')->drop($tableNames['role_has_permissions']);
-        Schema::connection('mysql')->drop($tableNames['model_has_roles']);
-        Schema::connection('mysql')->drop($tableNames['model_has_permissions']);
-        Schema::connection('mysql')->drop($tableNames['roles']);
-        Schema::connection('mysql')->drop($tableNames['permissions']);
+        Schema::connection('pgsql')->drop($tableNames['role_has_permissions']);
+        Schema::connection('pgsql')->drop($tableNames['model_has_roles']);
+        Schema::connection('pgsql')->drop($tableNames['model_has_permissions']);
+        Schema::connection('pgsql')->drop($tableNames['roles']);
+        Schema::connection('pgsql')->drop($tableNames['permissions']);
     }
 }

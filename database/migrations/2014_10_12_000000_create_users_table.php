@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql')->create('users', function (Blueprint $table) {
+        Schema::connection('pgsql')->create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->enum('type', [User::TYPE_ADMIN, User::TYPE_USER])->default(User::TYPE_USER);
             $table->string('name');
@@ -42,6 +42,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql')->dropIfExists('users');
+        Schema::connection('pgsql')->dropIfExists('users');
     }
 }
