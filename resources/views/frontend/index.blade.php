@@ -71,7 +71,7 @@
         @include('includes.partials.logged-in-as')
 
         <div id="app" class="flex-start position-ref full-height">
-            <div class="top-right links">
+            {{-- <div class="top-right links">
                 @auth
                     @if ($logged_in_user->isUser())
                         <a href="{{ route('frontend.user.dashboard') }}">@lang('Dashboard')</a>
@@ -85,7 +85,7 @@
                         <a href="{{ route('frontend.auth.register') }}">@lang('Register')</a>
                     @endif
                 @endauth
-            </div><!--top-right-->
+            </div><!--top-right--> --}}
 
             <div class="m-5 pb-5">
                 <table-component></table-component>
