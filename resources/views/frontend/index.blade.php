@@ -69,10 +69,9 @@
     <body>
         @include('includes.partials.read-only')
         @include('includes.partials.logged-in-as')
-        @include('includes.partials.announcements')
 
-        <div id="app" class="flex-center position-ref full-height">
-            <div class="top-right links">
+        <div id="app" class="flex-start position-ref full-height">
+            {{-- <div class="top-right links">
                 @auth
                     @if ($logged_in_user->isUser())
                         <a href="{{ route('frontend.user.dashboard') }}">@lang('Dashboard')</a>
@@ -86,19 +85,10 @@
                         <a href="{{ route('frontend.auth.register') }}">@lang('Register')</a>
                     @endif
                 @endauth
-            </div><!--top-right-->
+            </div><!--top-right--> --}}
 
-            <div class="content">
-                @include('includes.partials.messages')
-
-                <div class="title m-b-md">
-                    <example-component></example-component>
-                </div><!--title-->
-
-                <div class="links">
-                    <a href="http://laravel-boilerplate.com" target="_blank"><i class="fa fa-book"></i> @lang('Docs')</a>
-                    <a href="https://github.com/rappasoft/laravel-boilerplate" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                </div><!--links-->
+            <div class="m-5 pb-5">
+                <table-component></table-component>
             </div><!--content-->
         </div><!--app-->
 
