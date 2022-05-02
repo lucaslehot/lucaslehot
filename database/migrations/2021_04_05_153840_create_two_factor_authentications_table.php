@@ -13,7 +13,7 @@ class CreateTwoFactorAuthenticationsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('pgsql')->create('two_factor_authentications', function (Blueprint $table) {
+        Schema::connection('mysql')->create('two_factor_authentications', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->morphs('authenticatable', '2fa_auth_type_auth_id_index');
             $table->string('shared_secret');
@@ -37,6 +37,6 @@ class CreateTwoFactorAuthenticationsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('pgsql')->dropIfExists('two_factor_authentications');
+        Schema::connection('mysql')->dropIfExists('two_factor_authentications');
     }
 }
