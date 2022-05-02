@@ -11,7 +11,9 @@
         @stack('before-styles')
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-        <link href="{{ mix('css/frontend.css') }}" rel="stylesheet">
+        {{-- <link href="{{ mix('css/frontend.css') }}" rel="stylesheet"> --}}
+        <link rel="stylesheet" href="{{  asset('/css/frontend.css')  }}">
+
         <style>
             html, body {
                 background-color: #fff;
