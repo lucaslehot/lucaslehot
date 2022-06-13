@@ -13,6 +13,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         {{-- <link href="{{ mix('css/frontend.css') }}" rel="stylesheet"> --}}
         <link rel="stylesheet" href="{{  asset('/css/frontend.css')  }}">
+        <link rel="stylesheet" href="{{  asset('/css/app.css')  }}">
 
         <style>
             html, body {
@@ -23,48 +24,6 @@
                 height: 100vh;
                 margin: 0;
             }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
         </style>
         @stack('after-styles')
     </head>
@@ -72,7 +31,7 @@
         @include('includes.partials.read-only')
         @include('includes.partials.logged-in-as')
 
-        <div id="app" class="flex-start position-ref full-height">
+        <div id="app" class="flex-start h-full">
             {{-- <div class="top-right links">
                 @auth
                     @if ($logged_in_user->isUser())
@@ -88,10 +47,7 @@
                     @endif
                 @endauth
             </div><!--top-right--> --}}
-
-            <div class="m-5 pb-5">
-                <table-component></table-component>
-            </div><!--content-->
+            <home></home>
         </div><!--app-->
 
         @stack('before-scripts')
