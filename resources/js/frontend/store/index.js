@@ -2,12 +2,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import films from './films';
+import user from './user';
 
 Vue.use(Vuex);
 
 export const modules = {
-  films,
+  user,
 };
 
 export const store = new Vuex.Store({ modules });
