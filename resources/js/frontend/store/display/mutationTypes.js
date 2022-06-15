@@ -1,0 +1,2 @@
+export const SET_LIGHT_ON = 'SET_LIGHT_ON';
+export const SET_BACKGROUND_COLOR = 'SET_BACKGROUND_COLOR';
